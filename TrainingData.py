@@ -5,6 +5,7 @@ import HandTrackingModule1 as htm
 import numpy as np
 import csv
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from math import dist, sqrt
 import json 
@@ -35,7 +36,7 @@ def getDistanceFromCenter(lmList):
 def main():
     pTime=0
     cTime=0
-    cap=cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     detector=htm.handDetector()
     countLabel = 0
 
@@ -45,7 +46,7 @@ def main():
     p['index']=[targetLabel+"_" + str(i) for i in range (sampleSize)]
 
     while countLabel<sampleSize:
-        success,img=cap.read()
+        success,img = cap.read()
         img=detector.findhands(img)
         lmlist = detector.findPosition(img)
         
